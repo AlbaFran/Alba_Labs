@@ -1,0 +1,1144 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #102744;
+}
+
+header {
+    background: #102744;
+    color: white;
+    padding: 22px 28px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.logo-marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.logo-icone {
+    width: 38px;
+    height: 38px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+header p {
+    color: #cbdcf0;
+    margin-bottom: 0;
+}
+
+.menu-perfil-calendario {
+    position: relative;
+}
+
+.nome-perfil-calendario {
+    padding: 6px 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: #cbdcf0;
+    font-size: 14px;
+}
+
+.nome-perfil-calendario:hover:not(:disabled) {
+    background: rgba(255,255,255,0.12);
+    color: white;
+}
+
+.nome-perfil-calendario:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.dropdown-perfil-calendario {
+    position: absolute;
+    z-index: 1100;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 170px;
+    padding: 6px;
+    background: #fff;
+    border: 1px solid #dce4ee;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(16,39,68,0.18);
+}
+
+.dropdown-perfil-calendario[hidden] {
+    display: none;
+}
+
+.dropdown-perfil-calendario a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: #102744;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dropdown-perfil-calendario a:hover {
+    background: #eaf1ff;
+}
+
+main {
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 0 16px;
+}
+
+.topo, .controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+button, select, input {
+    padding: 10px 12px;
+    border: 1px solid #d5deea;
+    border-radius: 8px;
+    background: white;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+button, select {
+    cursor: pointer;
+}
+
+button:hover {
+    background: #eaf1ff;
+}
+
+.primario {
+    background: #2463eb;
+    color: white;
+    border: none;
+}
+
+.primario:hover {
+    background: #1d4ed8;
+    color: white;
+}
+
+.cartao {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 20px;
+}
+
+.controles {
+    margin: 18px 0;
+}
+
+.filtros {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.filtros button.ativo {
+    background: #dbeafe;
+    border-color: #2463eb;
+    color: #1d4ed8;
+}
+
+.legenda {
+    color: #52657b;
+    font-size: 12px;
+}
+
+/* Calendário */
+.calendario {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid #dce4ee;
+    border-left: 1px solid #dce4ee;
+}
+
+.dia-semana, .dia {
+    border-right: 1px solid #dce4ee;
+    border-bottom: 1px solid #dce4ee;
+    padding: 8px 5px;
+}
+
+.dia-semana {
+    background: #edf2f8;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.dia {
+    min-height: 220px;
+    background: white;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.dia:hover {
+    background: #f4f8ff;
+}
+
+.dia.fora {
+    background: #fafbfc;
+    color: #a0aaba;
+}
+
+.dia.selecionado {
+    outline: 2px solid #2463eb;
+    outline-offset: -2px;
+}
+
+.dia.dia-especial,
+.dia.dia-especial:hover {
+    background: #fff7ed;
+}
+
+.dia-especial-etiqueta {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    margin: 12px auto 0;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #ffedd5;
+    color: #9a3412;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.dia-especial-aviso {
+    margin: 0 0 14px;
+    padding: 12px 14px;
+    border: 1px solid #fed7aa;
+    border-radius: 9px;
+    background: #fff7ed;
+    color: #9a3412;
+}
+
+.dia-especial-aviso small {
+    display: block;
+    margin-top: 4px;
+}
+
+.form-dia-especial {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.8fr) minmax(150px, 1.2fr) auto;
+    gap: 10px;
+    align-items: end;
+    margin-bottom: 16px;
+}
+
+.form-dia-especial label {
+    display: grid;
+    gap: 5px;
+    color: #334e68;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-dia-especial input,
+.form-dia-especial select {
+    min-width: 0;
+    padding: 9px 10px;
+}
+
+.form-dia-especial-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.numero {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.reserva {
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.reserva-professores {
+    font-weight: 700;
+}
+
+.reserva-dados {
+    color: #334e68;
+    font-weight: 600;
+}
+
+.reserva-curso-turma {
+    display: block;
+    margin-top: 2px;
+}
+
+.solicitante-reserva {
+    display: block;
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.detalhes-dia-modal {
+    max-width: 760px;
+    max-height: 86vh;
+}
+
+.detalhes-cancelamento {
+    display: block;
+    margin-top: 5px;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.dialog-motivo-cancelamento {
+    width: min(520px, calc(100% - 24px));
+    max-width: 520px;
+    max-height: 90vh;
+    padding: 0;
+    border: 1px solid #dce4ee;
+    border-radius: 14px;
+    color: #102744;
+    box-shadow: 0 20px 60px rgba(16, 39, 68, 0.28);
+}
+
+.dialog-motivo-cancelamento::backdrop {
+    background: rgba(16, 39, 68, 0.62);
+}
+
+.dialog-sucesso {
+    width: min(420px, calc(100% - 28px));
+    max-width: 420px;
+    padding: 0;
+    border: 1px solid #dce4ee;
+    border-radius: 16px;
+    color: #102744;
+    box-shadow: 0 20px 60px rgba(16, 39, 68, 0.28);
+    text-align: center;
+}
+
+.dialog-sucesso::backdrop {
+    background: rgba(16, 39, 68, 0.62);
+}
+
+.dialog-aviso {
+    width: min(420px, calc(100% - 28px));
+    max-width: 420px;
+    padding: 0;
+    border: 1px solid #dce4ee;
+    border-radius: 16px;
+    color: #102744;
+    box-shadow: 0 20px 60px rgba(16, 39, 68, 0.28);
+}
+
+.dialog-aviso::backdrop {
+    background: rgba(16, 39, 68, 0.62);
+}
+
+.conteudo-dialog-aviso {
+    padding: 24px;
+    text-align: center;
+}
+
+.conteudo-dialog-aviso p {
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.conteudo-dialog-aviso button {
+    min-width: 92px;
+    padding: 10px 20px;
+}
+
+.conteudo-dialog-sucesso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 24px 24px;
+}
+
+.icone-dialog-sucesso {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    place-items: center;
+    border-radius: 50%;
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.conteudo-dialog-sucesso h2 {
+    margin: 0 0 8px;
+}
+
+.conteudo-dialog-sucesso p {
+    margin: 0 0 20px;
+    color: #52657b;
+    line-height: 1.5;
+}
+
+.conteudo-dialog-sucesso button {
+    min-width: 92px;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.form-motivo-cancelamento {
+    padding: 22px;
+}
+
+.form-motivo-cancelamento h2 {
+    margin: 0 0 8px;
+}
+
+.form-motivo-cancelamento p {
+    margin: 0 0 18px;
+    color: #52657b;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-motivo-cancelamento label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-motivo-cancelamento textarea {
+    display: block;
+    width: 100%;
+    min-height: 110px;
+    padding: 11px 12px;
+    border: 1px solid #cbd8e8;
+    border-radius: 8px;
+    color: #102744;
+    font: inherit;
+    resize: vertical;
+}
+
+.form-motivo-cancelamento textarea:focus {
+    outline: 3px solid rgba(37, 99, 235, 0.18);
+    border-color: #2563eb;
+}
+
+.detalhes-dia-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.detalhes-dia-cabecalho h2 {
+    margin: 0;
+}
+
+.aulas-dia-lista {
+    display: grid;
+    gap: 10px;
+    max-height: 62vh;
+    overflow-y: auto;
+}
+
+.aula-dia-card {
+    padding: 12px 14px;
+    border: 1px solid #dce4ee;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.aula-dia-card p {
+    margin: 5px 0;
+    color: #52657b;
+    font-size: 13px;
+}
+
+.aula-dia-card .aula-dia-professor {
+    margin: 8px 0;
+    color: #16324f;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.aula-dia-card .aula-dia-curso {
+    color: #64748b;
+}
+
+.aula-dia-anexos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.aula-dia-anexos a {
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.pendente {
+    background: #fff1b8;
+    color: #805b00;
+}
+
+.confirmada {
+    background: #d9f8e5;
+    color: #166534;
+}
+
+.livre {
+    color: #52657b;
+    font-size: 13px;
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(16, 39, 68, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.modal-overlay.aberto {
+    display: flex;
+}
+
+.modal-conteudo {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-conteudo h2 {
+    margin-top: 0;
+}
+
+.form-grupo {
+    margin-bottom: 14px;
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.form-grupo input,
+.form-grupo select {
+    display: block;
+    width: 100%;
+}
+
+.opcao-lab-engenharia {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 4px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #52657b;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.opcao-lab-engenharia small {
+    color: #718096;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.opcao-lab-comum {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 13px 14px;
+    border: 1px solid #cbd8e8;
+    border-radius: 10px;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.opcao-lab-comum:hover {
+    border-color: #7ca6ee;
+    background: #f1f6ff;
+}
+
+.opcao-lab-comum:has(input:checked) {
+    border-color: #2563eb;
+    background: #eff6ff;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.opcao-lab-comum:focus-within {
+    outline: 3px solid rgba(37, 99, 235, 0.2);
+    outline-offset: 2px;
+}
+
+.opcao-lab-engenharia input[type="checkbox"],
+.opcao-lab-comum input[type="checkbox"] {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #2563eb;
+}
+
+.opcao-lab-icone {
+    display: grid;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 9px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 21px;
+}
+
+.opcao-lab-conteudo,
+.opcao-lab-comum > span {
+    display: grid;
+    gap: 3px;
+    flex: 1;
+}
+
+.opcao-lab-conteudo strong,
+.opcao-lab-comum strong {
+    color: #102744;
+    font-size: 14px;
+}
+
+.opcao-lab-conteudo small,
+.opcao-lab-comum small {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.opcao-lab-etiqueta {
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.cadastro-usuarios-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    align-items: end;
+}
+
+.cadastro-usuarios-form .form-grupo {
+    margin-bottom: 0;
+}
+
+.cadastro-usuarios-form .acoes-form {
+    grid-column: 1 / -1;
+    margin-top: 0;
+}
+
+.gerenciar-modal {
+    max-width: 760px;
+}
+
+.gerenciar-cabecalho {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.gerenciar-cabecalho h2,
+.gerenciar-cabecalho p,
+.gerenciar-secao h3,
+.gerenciar-secao p {
+    margin-top: 0;
+}
+
+.gerenciar-cabecalho p,
+.gerenciar-secao p {
+    color: #52657b;
+    font-size: 13px;
+}
+
+.gerenciar-secao {
+    border-top: 1px solid #e2e8f0;
+    margin-top: 18px;
+    padding-top: 18px;
+}
+
+.lista-datas {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+}
+
+.lista-datas li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+.lista-datas button {
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+.lista-datas button:hover {
+    background: #fee2e2;
+}
+
+.acoes-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+/* Tela de Login e Cadastro */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #f0f4f9;
+}
+
+.login-card {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(16, 39, 68, 0.08);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.login-topo {
+    background: #102744;
+    color: white;
+    padding: 26px 24px;
+    text-align: center;
+}
+
+.login-topo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.login-topo p {
+    margin: 6px 0 0;
+    color: #cbdcf0;
+    font-size: 13px;
+}
+
+.login-corpo {
+    padding: 24px;
+}
+
+.login-abas {
+    display: flex;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.login-aba {
+    flex: 1;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 10px;
+    font-weight: 600;
+    color: #64748b;
+    border-radius: 0;
+}
+
+.login-aba.ativa {
+    color: #2463eb;
+    border-bottom-color: #2463eb;
+}
+
+.btn-bloco {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 15px;
+}
+
+.alerta {
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    display: none;
+}
+
+.alerta-erro {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.alerta-sucesso {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+/* Responsividade */
+@media (max-width: 650px) {
+    header {
+        padding: 18px;
+    }
+
+    .dia {
+        min-height: 70px;
+        padding: 5px 2px;
+    }
+
+    .dia-semana {
+        font-size: 10px;
+        padding: 8px 1px;
+    }
+
+    .reserva {
+        font-size: 8px;
+        padding: 3px 2px;
+    }
+}
+
+/* Tabela de Reservas e Novos Filtros */
+.tabela-reservas-container {
+    overflow-x: auto;
+    margin-top: 14px;
+}
+
+.tabela-reservas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: left;
+}
+
+.tabela-reservas th {
+    background: #edf2f8;
+    color: #102744;
+    padding: 10px 12px;
+    border-bottom: 2px solid #dce4ee;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tabela-reservas td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+}
+
+.tabela-reservas tr:hover {
+    background: #f8fafc;
+}
+
+.badge-periodo {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-manha {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-noite {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+.contagem-filtro {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 8px;
+}
+
+/* Botões de Ação para Aprovar e Recusar Reservas */
+.btn-acao {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 4px;
+    transition: all 0.15s ease;
+}
+
+.btn-aprovar {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.btn-aprovar:hover {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-recusar {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.btn-recusar:hover {
+    background: #dc2626;
+    color: white;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 650px) {
+    html,
+    body {
+        min-width: 320px;
+    }
+
+    header {
+        align-items: stretch !important;
+        gap: 14px !important;
+        padding: 16px;
+    }
+
+    header > div {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    header > div:last-child,
+    #usuarioSessao {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px !important;
+    }
+
+    header .logo-marca {
+        font-size: 22px;
+    }
+
+    header .logo-icone {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nome-perfil-calendario,
+    #usuarioLogadoNome,
+    #usuarioGerenciarNome {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        text-align: left;
+    }
+
+    main {
+        margin: 16px auto;
+        padding: 0 12px;
+    }
+
+    .topo {
+        align-items: stretch;
+    }
+
+    .topo > div {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .cartao {
+        padding: 13px;
+        margin-top: 14px;
+    }
+
+    .controles,
+    .filtros {
+        width: 100%;
+    }
+
+    .filtros button {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 9px 8px;
+    }
+
+    #btnNovaReserva,
+    .acoes-form button {
+        width: 100%;
+    }
+
+    .calendario {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .dia {
+        min-width: 0;
+        min-height: 74px;
+        overflow: hidden;
+    }
+
+    .reserva {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        font-size: 7px;
+        line-height: 1.2;
+    }
+
+    .form-dia-especial {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-overlay {
+        padding: 10px;
+        align-items: flex-end;
+    }
+
+    .modal-conteudo {
+        max-height: 92vh;
+        max-height: 92dvh;
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .dialog-motivo-cancelamento {
+        width: calc(100% - 20px);
+        max-height: 92vh;
+        max-height: 92dvh;
+        margin: auto 0 0;
+        border-radius: 14px 14px 0 0;
+    }
+
+    .acoes-form {
+        flex-direction: column;
+    }
+
+    .cadastro-usuarios-form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .gerenciar-cabecalho-pagina {
+        align-items: flex-start;
+    }
+
+    .tabela-reservas-container {
+        overflow: visible;
+    }
+
+    .tabela-reservas,
+    .tabela-reservas tbody,
+    .tabela-reservas tr,
+    .tabela-reservas td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-reservas thead {
+        display: none;
+    }
+
+    .tabela-reservas tr {
+        margin-bottom: 12px;
+        overflow: hidden;
+        border: 1px solid #dce4ee;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .tabela-reservas td {
+        display: grid;
+        grid-template-columns: minmax(86px, 30%) minmax(0, 1fr);
+        gap: 10px;
+        padding: 9px 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .tabela-reservas td::before {
+        content: attr(data-label);
+        color: #64748b;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .tabela-reservas td:last-child {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .tabela-reservas td:last-child::before {
+        flex: 0 0 100%;
+    }
+
+    .tabela-reservas .btn-acao {
+        margin: 0;
+    }
+}

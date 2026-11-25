@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alba Labs - Login</title>
+        <link rel="icon" type="image/svg+xml" href="atom.svg">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-topo">
+                    <h1 class="logo-marca" style="justify-content: center;">
+                        <svg class="logo-icone" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="24" cy="24" r="3.2" fill="currentColor" stroke="none" />
+                            <ellipse cx="24" cy="24" rx="20" ry="7" />
+                            <ellipse cx="24" cy="24" rx="20" ry="7" transform="rotate(60 24 24)" />
+                            <ellipse cx="24" cy="24" rx="20" ry="7" transform="rotate(120 24 24)" />
+                        </svg>
+                        <span>Alba Labs</span>
+                    </h1>
+                    <p>Gestão e Agendamento de Laboratórios</p>
+                </div>
+
+                <div class="login-corpo">
+                    <!-- Mensagens de Alerta (Erro ou Sucesso) -->
+                    <div id="msgAlerta" class="alerta"></div>
+
+                    <!-- Formulário de Login -->
+                    <form id="formLogin">
+                        <div class="form-grupo">
+                            <label for="loginEmail">E-mail institucional</label>
+                            <input type="email" id="loginEmail" required placeholder="ex: professor@albalabs.com">
+                        </div>
+
+                        <div class="form-grupo">
+                            <label for="loginSenha">Senha</label>
+                            <input type="password" id="loginSenha" required placeholder="Digite sua senha">
+                        </div>
+
+                        <button type="submit" class="primario btn-bloco">
+                            Entrar no Sistema
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="js/login.js"></script>
+    </body>
+</html>

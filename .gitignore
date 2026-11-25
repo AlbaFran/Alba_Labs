@@ -1,0 +1,22 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+senhas_provisorias.txt
+test_mysql.php
+
+# Local database and private IDE settings
+nbproject/private/
+
+# Real uploaded documents and local data
+public_html/uploads/*
+!public_html/uploads/.gitkeep
+maintenance_scripts/
+backup_pages_local/
+test/
+
+# Deployment artifacts and generated files
+*.zip
+*.log
+Thumbs.db
+desktop.ini
