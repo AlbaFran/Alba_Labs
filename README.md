@@ -4,13 +4,13 @@ Sistema web para solicitar e organizar reservas de laboratórios acadêmicos.
 
 ## Andamento do projeto
 
-O MVP está em desenvolvimento e publicado no Azure App Service, conectado ao Azure Database for MySQL. A entrega está prevista para **25/11/2026**.
+O MVP está em desenvolvimento e publicado no Azure App Service, conectado ao Azure Database for MySQL.
 
 ### Funcionalidades implementadas
 
 - Login por e-mail e senha, com senhas armazenadas em hash.
 - Páginas internas protegidas por sessão.
-- Perfis de professor, técnico, coordenador e administrador, com permissões diferentes.
+- Perfis de professor, técnico e coordenador, com permissões diferentes.
 - Criação de solicitações por todos os perfis, com seleção de professor responsável, curso, turma, matéria, período, data e quantidade de laboratórios.
 - Verificação de disponibilidade e prevenção de conflito de reserva para o mesmo laboratório, data e período.
 - Calendário com detalhes das aulas e quantidade de laboratórios agrupada.
@@ -19,14 +19,6 @@ O MVP está em desenvolvimento e publicado no Azure App Service, conectado ao Az
 - Gestão de usuários conforme o perfil, alteração da própria senha e redefinição de senha por coordenador.
 - Anexos associados às solicitações.
 - Interface responsiva para telas menores.
-
-### Pendências para a entrega
-
-- Fazer uma rodada manual de ponta a ponta com contas dos diferentes perfis.
-- Conferir criação, edição, aprovação e cancelamento de solicitações, incluindo o histórico do motivo.
-- Conferir login, alteração de senha e redefinição com senha provisória.
-- Revisar a visualização em celular e os dados no Azure.
-- Fazer backup do banco antes da apresentação.
 
 ## Tecnologias
 
@@ -57,7 +49,6 @@ Requisitos: PHP com `pdo_mysql` e um servidor MySQL.
 
 5. Abra `http://localhost:8000/login.html`.
 
-No Azure, as mesmas variáveis são configuradas em **App Service → Configurações → Variáveis de ambiente**. Os valores secretos, especialmente `DB_PASSWORD`, não devem ser colocados neste README ou no código-fonte.
 
 ## Estrutura principal
 
